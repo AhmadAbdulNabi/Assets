@@ -1,0 +1,10 @@
+﻿@model Account 
+<h4 class="mb-4 text-primary">Add account</h4>
+<form asp-action="Create" class="mx-auto" style="max-width: 600px;" method="post">
+    <div class="mb-3">
+        <label asp-for="AccountName" class="form-label">Account Name</label>
+        <input asp-for="AccountName" class="form-control"  />
+    </div> 
+    <button type="submit" class="btn btn-success ">Save</button>
+    <a asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
+</form>

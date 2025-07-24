@@ -1,0 +1,45 @@
+﻿@model Assets.Models.Asset
+@{
+    ViewData["Title"] = "Edit Asset";
+    var accounts = ViewBag.Accounts as List<Assets.Models.Account> ?? new List<Assets.Models.Account>();
+}
+<h4 class="mb-4 text-primary">Edit Asset</h4>
+<form asp-action="Edit" method="post" class="mx-auto" style="max-width:600px;">
+    <input type="hidden" asp-for="AssetId" />
+
+    <div class="mb-3">
+        <label asp-for="AssetNumber" class="form-label">Asset No</label>
+        <input asp-for="AssetNumber" class="form-control" readonly />
+    </div>
+    <div class="mb-3">
+        <label asp-for="AssetName" class="form-label">Asset Name</label>
+        <input asp-for="AssetName" class="form-control" required autocomplete="off" />
+        <span asp-validation-for="AssetName" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="AssetDate" class="form-label">Asset Date</label>
+        <input asp-for="AssetDate" type="date" class="form-control" required />
+        <span asp-validation-for="AssetDate" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="PurchaseValue" class="form-label">Purchase Value</label>
+        <input asp-for="PurchaseValue" class="form-control" required autocomplete="off" />
+        <span asp-validation-for="PurchaseValue" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="AssetAccountId" class="form-label">Asset Account</label>
+        <select asp-for="AssetAccountId" class="form-select select2" asp-items="@(new SelectList(accounts, "AccountId", "AccountName"))" required>
+            <option value="">-- Select Account --</option>
+        </select>
+        <span asp-validation-for="AssetAccountId" class="text-danger"></span>
+    </div>
+    <div class="mb-4">
+        <label asp-for="PurchaseAccountId" class="form-label">Purchase Account</label>
+        <select asp-for="PurchaseAccountId" class="form-select select2" asp-items="@(new SelectList(accounts, "AccountId", "AccountName"))" required>
+            <option value="">-- Select Account --</option>
+        </select>
+        <span asp-validation-for="PurchaseAccountId" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
+</form>

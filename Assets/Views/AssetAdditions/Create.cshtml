@@ -1,0 +1,32 @@
+﻿@model Assets.Models.AssetAddition
+@{
+    var assets = ViewBag.Assets as List<Assets.Models.Asset> ?? new List<Assets.Models.Asset>();
+}
+<h4 class="mb-4 text-primary">Add Addition</h4>
+<form asp-action="Create" class="mx-auto" style="max-width: 600px;" method="post">
+    <div class="mb-3">
+        <label asp-for="AssetId" class="form-label">Asset</label>
+        <select asp-for="AssetId" class="form-select select2" asp-items="@(new SelectList(assets, "AssetId", "AssetName"))" required>
+            <option value="">-- Select Asset --</option>
+        </select>
+        <span asp-validation-for="AssetId" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="AdditionDate" class="form-label">Addition Date</label>
+        <input asp-for="AdditionDate" type="date" class="form-control"
+               value="@Model.AdditionDate.ToString("yyyy-MM-dd")" required />
+               <span asp-validation-for="AdditionDate" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="AdditionValue" class="form-label">Addition Value</label>
+        <input asp-for="AdditionValue" class="form-control" required autocomplete="off" />
+        <span asp-validation-for="AdditionValue" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label">Description</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success w-100">Save</button>
+</form>
+ 

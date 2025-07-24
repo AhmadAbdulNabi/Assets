@@ -1,0 +1,24 @@
+﻿@model List<Assets.Models.JournalEntry>
+<table id="Table"  class="table table-bordered table-striped">
+    <thead class="table-dark text-center">
+        <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Account</th>
+            <th>Debit</th>
+            <th>Credit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var entry in Model)
+        {
+            <tr>
+                <td class="text-center">@entry.EntryDate.ToShortDateString()</td>
+                <td>@entry.Description</td>
+                <td>@entry.AccountName</td>
+                <td class="text-end">@((entry.Debit > 0) ? entry.Debit.ToString("N2") : "")</td>
+                <td class="text-end">@((entry.Credit > 0) ? entry.Credit.ToString("N2") : "")</td>
+            </tr>
+        }
+    </tbody>
+</table>
